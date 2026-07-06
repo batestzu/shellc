@@ -22,6 +22,40 @@
        back to its own default size. Stretch it to fill the wrapper. */
     .sc-host-x{display:block}
     .sc-host-x>*{display:block;width:100%;height:100%}
+
+    /* mobile nav: hamburger toggle + dropdown panel */
+    .she-nav-toggle{display:none}
+    @media (max-width:860px){
+      .she-nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:none;border:0;cursor:pointer;color:#38333F;flex:none}
+      .she-nav-links{display:none !important}
+      .she-nav-links.she-nav-open{
+        display:flex !important;flex-direction:column;align-items:stretch;gap:2px;
+        position:absolute;top:100%;left:0;right:0;
+        background:#F5F1E8;padding:8px 24px 20px;
+        box-shadow:0 14px 28px rgba(56,51,63,0.14);
+        border-bottom:1px solid #E7DFD0;
+      }
+      .she-nav-links.she-nav-open button{width:100%;text-align:left;padding:12px 14px}
+      .she-nav-links.she-nav-open a{margin:10px 0 0 0;justify-content:center}
+    }
+
+    /* collapse multi-column layouts on narrower screens */
+    @media (max-width:860px){
+      .she-split-about{grid-template-columns:1fr !important;gap:36px !important}
+      .she-split-contact{grid-template-columns:1fr !important}
+      .she-split-careers{grid-template-columns:1fr !important}
+    }
+    @media (max-width:700px){
+      .she-grid-4{grid-template-columns:repeat(2,1fr) !important}
+      .she-grid-3{grid-template-columns:1fr !important}
+      .she-footer-grid{grid-template-columns:1fr !important;gap:32px !important}
+    }
+    @media (max-width:480px){
+      .she-grid-4{grid-template-columns:1fr !important}
+    }
+    @media (max-width:640px){
+      .she-field-row{grid-template-columns:1fr !important}
+    }
   </style>
 </helmet>
 
@@ -29,7 +63,7 @@
 
   <!-- ============ HEADER ============ -->
   <header style="position:sticky;top:0;z-index:50;background:rgba(245,241,232,0.86);backdrop-filter:blur(10px);border-bottom:1px solid #E7DFD0">
-    <div style="max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative">
       <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;background:none;border:0;cursor:pointer;padding:0;text-align:left">
         <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#8B73B8;color:#F5F1E8;font-family:'Marcellus',serif;font-size:17px;letter-spacing:0.04em;box-shadow:0 4px 14px rgba(139,115,184,0.35)">SHE</span>
         <span style="display:flex;flex-direction:column;line-height:1.05">
@@ -38,7 +72,7 @@
         </span>
       </button>
 
-      <nav style="display:flex;align-items:center;gap:6px">
+      <nav class="{{ navLinksClass }}" style="display:flex;align-items:center;gap:6px">
         <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
           <button onClick="{{ item.go }}" style="position:relative;background:none;border:0;cursor:pointer;font-size:15px;font-weight:600;color:#4A4552;padding:8px 14px;border-radius:8px" style-hover="background:#EBE4F5;color:#5E4A85">
             {{ item.label }}
@@ -52,6 +86,10 @@
           706-267-9893
         </a>
       </nav>
+
+      <button class="she-nav-toggle" onClick="{{ toggleMobileNav }}" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
     </div>
   </header>
 
@@ -65,7 +103,7 @@
             <section style="background:linear-gradient(180deg,#EBE4F5 0%,#F5F1E8 100%);border-bottom:1px solid #E7DFD0">
               <div style="max-width:900px;margin:0 auto;padding:74px 24px 56px;text-align:center">
                 <span style="display:inline-flex;align-items:center;gap:8px;background:#FCFAF4;color:#5E4A85;font-weight:700;font-size:13px;padding:8px 17px;border-radius:999px;box-shadow:0 4px 14px rgba(94,74,133,0.12)">Locally owned by mothers · Serving the CSRA</span>
-                <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:64px;line-height:1.04;letter-spacing:-0.01em;color:#38333F;margin:24px 0 0">Painting &amp; repairs,<br>with a woman's touch</h1>
+                <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(34px,9vw,64px);line-height:1.04;letter-spacing:-0.01em;color:#38333F;margin:24px 0 0">Painting &amp; repairs,<br>with a woman's touch</h1>
                 <p style="font-size:20px;line-height:1.6;color:#5B5464;max-width:52ch;margin:22px auto 0">A safe, respectful, all-women team for interior painting, minor drywall repair, and the small fixes on your list.</p>
                 <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:32px">
                   <button onClick="{{ goContact }}" style="background:#7D9670;color:#F7F5EF;border:0;cursor:pointer;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;box-shadow:0 8px 22px rgba(125,150,112,0.35)" style-hover="background:#6C8560">Get a free estimate</button>
@@ -83,7 +121,7 @@
             <section style="max-width:1080px;margin:0 auto;padding:96px 24px 40px">
               <div style="text-align:center;margin-bottom:56px">
                 <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#7D9670;font-weight:700">Our services</span>
-                <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:42px;color:#38333F;margin:12px 0 0">Everything to freshen up your space</h2>
+                <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(26px,6vw,42px);color:#38333F;margin:12px 0 0">Everything to freshen up your space</h2>
               </div>
               <div style="display:grid;gap:22px">
                 <sc-for list="{{ services }}" as="s" hint-placeholder-count="3">
@@ -100,7 +138,7 @@
 
             <!-- values grid -->
             <section style="max-width:1180px;margin:0 auto;padding:72px 24px">
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+              <div class="she-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
                 <sc-for list="{{ valueCards }}" as="c" hint-placeholder-count="4">
                   <div style="background:#EBE4F5;border-radius:20px;padding:30px 26px;text-align:center">
                     <span style="display:inline-flex;width:52px;height:52px;border-radius:50%;background:#FCFAF4;color:#5E4A85;align-items:center;justify-content:center;margin-bottom:16px" innerHTML="{{ c.icon }}"></span>
@@ -115,7 +153,7 @@
             <section style="background:#7D9670">
               <div style="max-width:820px;margin:0 auto;padding:82px 24px;text-align:center">
                 <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#E6EEDF;font-weight:700">Our mission</span>
-                <p style="font-family:'Marcellus',serif;font-weight:400;font-size:30px;line-height:1.4;color:#FBFBF7;margin:18px 0 28px">Training young women in a trade to promote female economic empowerment — one home at a time.</p>
+                <p style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(20px,5vw,30px);line-height:1.4;color:#FBFBF7;margin:18px 0 28px">Training young women in a trade to promote female economic empowerment — one home at a time.</p>
                 <button onClick="{{ goCareers }}" style="background:#FBFBF7;color:#566B49;border:0;cursor:pointer;font-weight:800;font-size:16px;padding:15px 30px;border-radius:999px" style-hover="background:#fff">Join our team</button>
               </div>
             </section>
@@ -123,7 +161,7 @@
             <!-- CTA -->
             <section style="max-width:1180px;margin:0 auto;padding:88px 24px">
               <div style="text-align:center">
-                <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:42px;color:#38333F;margin:0 0 14px">Let's talk about your project</h2>
+                <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(26px,6vw,42px);color:#38333F;margin:0 0 14px">Let's talk about your project</h2>
                 <p style="font-size:18px;color:#5B5464;margin:0 auto 30px;max-width:46ch;line-height:1.6">Free estimates, honest pricing, and a team that treats your home like their own.</p>
                 <button onClick="{{ goContact }}" style="background:#8B73B8;color:#F7F5EF;border:0;cursor:pointer;font-weight:800;font-size:17px;padding:16px 34px;border-radius:999px;box-shadow:0 10px 26px rgba(139,115,184,0.35)" style-hover="background:#7A63A6">Request a free estimate</button>
               </div>
@@ -138,17 +176,17 @@
         <section style="background:#EBE4F5;border-bottom:1px solid #E1D8C8">
           <div style="max-width:1180px;margin:0 auto;padding:72px 24px;text-align:center">
             <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#5E4A85;font-weight:700">About S.H.E.</span>
-            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:52px;color:#38333F;margin:14px 0 0">Skilled Home Experts</h1>
+            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(30px,8vw,52px);color:#38333F;margin:14px 0 0">Skilled Home Experts</h1>
             <p style="font-size:19px;line-height:1.6;color:#5B5464;max-width:56ch;margin:18px auto 0">A woman-owned enterprise bringing a woman's touch and professional results to homes across the Central Savannah River Area.</p>
           </div>
         </section>
 
-        <section style="max-width:1180px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:0.6fr 1.1fr;gap:56px;align-items:center">
+        <section class="she-split-about" style="max-width:1180px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:0.6fr 1.1fr;gap:56px;align-items:center">
           <div style="{{ portraitImgStyle }}">
             <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="about-portrait" src="assets/kayla-lola-roof.jpg" credit="" shape="rounded" radius="24" fit="cover" placeholder="Drop a photo of the team / founders" style="display:block;width:100%;height:100%" hint-size="100%,100%"></x-import>
           </div>
           <div>
-            <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:36px;color:#38333F;margin:0 0 18px">Owned by mothers, built for comfort</h2>
+            <h2 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(24px,5vw,36px);color:#38333F;margin:0 0 18px">Owned by mothers, built for comfort</h2>
             <p style="font-size:17px;line-height:1.7;color:#5B5464;margin:0 0 16px">Skilled Home Experts is a Woman Owned Enterprise, locally owned by mothers who understand what it means to want a safe, respectful crew in your home. We serve Augusta, GA, Aiken, SC, and the surrounding CSRA.</p>
             <p style="font-size:17px;line-height:1.7;color:#5B5464;margin:0 0 24px">We cater specifically to women and seniors who may feel uneasy having men in their homes — and to anyone who simply prefers the comfort of an all-women team. Licensed, insured, and genuinely proud of our work.</p>
             <div style="display:flex;flex-wrap:wrap;gap:12px">
@@ -163,13 +201,13 @@
         <section style="background:#7D9670">
           <div style="max-width:880px;margin:0 auto;padding:80px 24px;text-align:center">
             <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#E6EEDF;font-weight:700">Our mission statement</span>
-            <p style="font-family:'Marcellus',serif;font-weight:400;font-size:26px;line-height:1.5;color:#FBFBF7;margin:20px 0 0">As a woman-owned business we are committed to creating a safe, respectful and welcoming experience for every customer. We proudly serve women, seniors, individuals with disabilities, and anyone who prefers the comfort of an all-woman team. We respect the privacy, cultural traditions, religious beliefs and personal boundaries of every household.</p>
+            <p style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(19px,4.5vw,26px);line-height:1.5;color:#FBFBF7;margin:20px 0 0">As a woman-owned business we are committed to creating a safe, respectful and welcoming experience for every customer. We proudly serve women, seniors, individuals with disabilities, and anyone who prefers the comfort of an all-woman team. We respect the privacy, cultural traditions, religious beliefs and personal boundaries of every household.</p>
           </div>
         </section>
 
         <!-- pillars -->
         <section style="max-width:1180px;margin:0 auto;padding:84px 24px">
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <div class="she-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
             <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
               <div style="background:#FCFAF4;border:1px solid #ECE3D3;border-radius:20px;padding:34px 30px">
                 <span style="display:flex;width:54px;height:54px;border-radius:15px;background:#EBE4F5;color:#5E4A85;align-items:center;justify-content:center;margin-bottom:20px" innerHTML="{{ p.icon }}"></span>
@@ -209,12 +247,12 @@
         <section style="background:#EBE4F5;border-bottom:1px solid #E1D8C8">
           <div style="max-width:1180px;margin:0 auto;padding:64px 24px;text-align:center">
             <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#5E4A85;font-weight:700">Contact us</span>
-            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:50px;color:#38333F;margin:14px 0 0">Request a free estimate</h1>
+            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(30px,8vw,50px);color:#38333F;margin:14px 0 0">Request a free estimate</h1>
             <p style="font-size:18px;line-height:1.6;color:#5B5464;max-width:52ch;margin:16px auto 0">Tell us what you're planning. We'll follow up with a friendly, no-pressure estimate.</p>
           </div>
         </section>
 
-        <section style="max-width:1120px;margin:0 auto;padding:64px 24px 90px;display:grid;grid-template-columns:1.35fr 0.85fr;gap:48px;align-items:start">
+        <section class="she-split-contact" style="max-width:1120px;margin:0 auto;padding:64px 24px 90px;display:grid;grid-template-columns:1.35fr 0.85fr;gap:48px;align-items:start">
           <!-- FORM -->
           <div style="background:#FCFAF4;border:1px solid #ECE3D3;border-radius:24px;padding:40px;box-shadow:0 16px 44px rgba(94,74,133,0.1)">
             <sc-if value="{{ estimateSent }}" hint-placeholder-val="{{ false }}">
@@ -227,12 +265,12 @@
             </sc-if>
             <sc-if value="{{ estimateOpen }}" hint-placeholder-val="{{ true }}">
               <form onSubmit="{{ onEstimate }}" style="display:grid;gap:18px">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                <div class="she-field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Name</span><input name="name" required placeholder="Your name" style="{{ inputStyle }}"></label>
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input name="phone" required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
                 </div>
                 <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Email</span><input name="email" required type="email" placeholder="you@email.com" style="{{ inputStyle }}"></label>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                <div class="she-field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Service needed</span>
                     <select name="service" required style="{{ inputStyle }}">
                       <option value="">Select a service</option>
@@ -288,12 +326,12 @@
         <section style="background:#DDE7D5;border-bottom:1px solid #CBD8C0">
           <div style="max-width:1180px;margin:0 auto;padding:70px 24px;text-align:center">
             <span style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#566B49;font-weight:700">Recruitment</span>
-            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:52px;color:#33402C;margin:14px 0 0">Build a career, build our community</h1>
+            <h1 style="font-family:'Marcellus',serif;font-weight:400;font-size:clamp(30px,8vw,52px);color:#33402C;margin:14px 0 0">Build a career, build our community</h1>
             <p style="font-size:19px;line-height:1.6;color:#3F4A38;max-width:56ch;margin:18px auto 0">We're training women in a trade to promote female economic empowerment. No experience? We'll train you.</p>
           </div>
         </section>
 
-        <section style="max-width:1120px;margin:0 auto;padding:64px 24px 90px;display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:start">
+        <section class="she-split-careers" style="max-width:1120px;margin:0 auto;padding:64px 24px 90px;display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:start">
           <!-- role info -->
           <div style="display:grid;gap:20px">
             <div style="background:#FCFAF4;border:1px solid #ECE3D3;border-radius:20px;padding:30px">
@@ -331,7 +369,7 @@
             <sc-if value="{{ careerOpen }}" hint-placeholder-val="{{ true }}">
               <form onSubmit="{{ onCareer }}" style="display:grid;gap:18px">
                 <h3 style="font-family:'Marcellus',serif;font-weight:400;font-size:24px;color:#38333F;margin:0">Apply now</h3>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                <div class="she-field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Full name</span><input name="name" required placeholder="Your name" style="{{ inputStyle }}"></label>
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input name="phone" required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
                 </div>
@@ -357,7 +395,7 @@
 
   <!-- ============ FOOTER ============ -->
   <footer style="background:#38333F;color:#E7E2ED">
-    <div style="max-width:1180px;margin:0 auto;padding:60px 24px 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px">
+    <div class="she-footer-grid" style="max-width:1180px;margin:0 auto;padding:60px 24px 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px">
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
           <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#8B73B8;color:#F5F1E8;font-family:'Marcellus',serif;font-size:17px;letter-spacing:0.04em">SHE</span>
@@ -445,20 +483,27 @@ async function submitFormData(form, formType) {
 }
 
 class Component extends DCLogic {
-  state = { page: 'home', estimateSent: false, careerSent: false };
+  state = { page: 'home', estimateSent: false, careerSent: false, mobileNavOpen: false };
 
   go(page) {
-    this.setState({ page });
+    this.setState({ page, mobileNavOpen: false });
     if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  toggleMobileNav() {
+    this.setState({ mobileNavOpen: !this.state.mobileNavOpen });
+  }
+
   renderVals() {
-    const { page, estimateSent, careerSent } = this.state;
+    const { page, estimateSent, careerSent, mobileNavOpen } = this.state;
     const picScale = this.props.pictureScale ?? 1;
     const heroSq = Math.round(560 * picScale);
-    const heroImgStyle = 'width:' + heroSq + 'px;height:' + heroSq + 'px;max-width:100%;aspect-ratio:1/1;border-radius:26px;overflow:hidden;box-shadow:0 30px 70px rgba(94,74,133,0.25)';
+    // width only (no fixed height) so aspect-ratio can shrink height to match
+    // once max-width:100% clamps the box on narrow screens — a fixed height
+    // here would otherwise squish/stretch the image instead of scaling it.
+    const heroImgStyle = 'width:' + heroSq + 'px;max-width:100%;aspect-ratio:1/1;border-radius:26px;overflow:hidden;box-shadow:0 30px 70px rgba(94,74,133,0.25)';
     const portH = Math.round(480 * picScale);
-    const portraitImgStyle = 'height:' + portH + 'px;width:' + Math.round(portH * 9 / 16) + 'px;max-width:100%;aspect-ratio:9/16;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 22px 55px rgba(94,74,133,0.2)';
+    const portraitImgStyle = 'width:' + Math.round(portH * 9 / 16) + 'px;max-width:100%;aspect-ratio:9/16;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 22px 55px rgba(94,74,133,0.2)';
 
     const ic = {
       roller: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="7" rx="1.5"/><path d="M17 6.5h2.5A1.5 1.5 0 0 1 21 8v2.5a1.5 1.5 0 0 1-1.5 1.5H12"/><path d="M12 12v3"/><rect x="10" y="15" width="4" height="6" rx="1"/></svg>',
@@ -532,11 +577,12 @@ class Component extends DCLogic {
     }));
 
     const inputStyle = 'width:100%;box-sizing:border-box;background:#F7F3EB;border:1.5px solid #E4DAC8;border-radius:11px;padding:13px 15px;font-size:15px;color:#38333F;outline:none';
+    const navLinksClass = 'she-nav-links' + (mobileNavOpen ? ' she-nav-open' : '');
 
     return {
       year: new Date().getFullYear(),
       nav, services, valueCards, pillars, contactCards, perks, gallery,
-      inputStyle, heroImgStyle, portraitImgStyle,
+      inputStyle, heroImgStyle, portraitImgStyle, navLinksClass,
       isHome: page === 'home', isAbout: page === 'about', isGallery: page === 'gallery',
       isContact: page === 'contact', isCareers: page === 'careers',
       estimateSent, estimateOpen: !estimateSent,
@@ -544,6 +590,7 @@ class Component extends DCLogic {
       goHome: () => this.go('home'), goAbout: () => this.go('about'),
       goGallery: () => this.go('gallery'), goContact: () => this.go('contact'),
       goCareers: () => this.go('careers'),
+      toggleMobileNav: () => this.toggleMobileNav(),
       onEstimate: (e) => { e.preventDefault(); submitFormData(e.target, 'estimate'); this.setState({ estimateSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
       onCareer: (e) => { e.preventDefault(); submitFormData(e.target, 'career'); this.setState({ careerSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
       resetEstimate: () => this.setState({ estimateSent: false }),
