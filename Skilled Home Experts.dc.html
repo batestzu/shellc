@@ -228,13 +228,13 @@
             <sc-if value="{{ estimateOpen }}" hint-placeholder-val="{{ true }}">
               <form onSubmit="{{ onEstimate }}" style="display:grid;gap:18px">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Name</span><input required placeholder="Your name" style="{{ inputStyle }}"></label>
-                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
+                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Name</span><input name="name" required placeholder="Your name" style="{{ inputStyle }}"></label>
+                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input name="phone" required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
                 </div>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Email</span><input required type="email" placeholder="you@email.com" style="{{ inputStyle }}"></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Email</span><input name="email" required type="email" placeholder="you@email.com" style="{{ inputStyle }}"></label>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Service needed</span>
-                    <select required style="{{ inputStyle }}">
+                    <select name="service" required style="{{ inputStyle }}">
                       <option value="">Select a service</option>
                       <option>Interior Painting</option>
                       <option>Minor Drywall Repair</option>
@@ -243,7 +243,7 @@
                     </select>
                   </label>
                   <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Preferred timeframe</span>
-                    <select style="{{ inputStyle }}">
+                    <select name="timeframe" style="{{ inputStyle }}">
                       <option value="">Select</option>
                       <option>As soon as possible</option>
                       <option>Within 2 weeks</option>
@@ -252,13 +252,13 @@
                     </select>
                   </label>
                 </div>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Address / service area</span><input placeholder="Street, City, State" style="{{ inputStyle }}"></label>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Project description</span><textarea rows="4" placeholder="Tell us about the rooms, colors, or repairs you have in mind…" style="{{ inputStyle }}"></textarea></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Address / service area</span><input name="address" placeholder="Street, City, State" style="{{ inputStyle }}"></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Project description</span><textarea name="message" rows="4" placeholder="Tell us about the rooms, colors, or repairs you have in mind…" style="{{ inputStyle }}"></textarea></label>
                 <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Add photos <span style="font-weight:400;color:#948C9E">(optional)</span></span>
                   <div style="border:1.5px dashed #CDBFA8;border-radius:12px;padding:22px;text-align:center;color:#7D7688;background:#F7F3EB">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B73B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                     <div style="font-size:14px;font-weight:600">Drag photos here or <span style="color:#5E4A85;text-decoration:underline">browse</span></div>
-                    <input type="file" accept="image/*" multiple style="margin-top:10px;font-size:13px;color:#7D7688">
+                    <input name="photos" type="file" accept="image/*" multiple style="margin-top:10px;font-size:13px;color:#7D7688">
                   </div>
                 </label>
                 <button type="submit" style="margin-top:6px;background:#8B73B8;color:#F7F5EF;border:0;cursor:pointer;font-weight:800;font-size:16px;padding:16px;border-radius:12px;box-shadow:0 10px 24px rgba(139,115,184,0.3)" style-hover="background:#7A63A6">Send my estimate request</button>
@@ -332,12 +332,12 @@
               <form onSubmit="{{ onCareer }}" style="display:grid;gap:18px">
                 <h3 style="font-family:'Marcellus',serif;font-weight:400;font-size:24px;color:#38333F;margin:0">Apply now</h3>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Full name</span><input required placeholder="Your name" style="{{ inputStyle }}"></label>
-                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
+                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Full name</span><input name="name" required placeholder="Your name" style="{{ inputStyle }}"></label>
+                  <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Phone</span><input name="phone" required type="tel" placeholder="(706) 000-0000" style="{{ inputStyle }}"></label>
                 </div>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Email</span><input required type="email" placeholder="you@email.com" style="{{ inputStyle }}"></label>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Address</span><input required placeholder="Street, City, State" style="{{ inputStyle }}"></label>
-                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Describe your experience</span><textarea rows="4" placeholder="Any painting, repair, or related experience — or tell us why you'd like to learn." style="{{ inputStyle }}"></textarea></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Email</span><input name="email" required type="email" placeholder="you@email.com" style="{{ inputStyle }}"></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Address</span><input name="address" required placeholder="Street, City, State" style="{{ inputStyle }}"></label>
+                <label style="display:grid;gap:7px"><span style="font-size:14px;font-weight:700;color:#4A4552">Describe your experience</span><textarea name="experience" rows="4" placeholder="Any painting, repair, or related experience — or tell us why you'd like to learn." style="{{ inputStyle }}"></textarea></label>
                 <div style="display:grid;gap:9px">
                   <span style="font-size:14px;font-weight:700;color:#4A4552">Do you have reliable transportation?</span>
                   <div style="display:flex;gap:22px">
@@ -398,6 +398,52 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;pictureScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0.6,&quot;max&quot;:1.6,&quot;step&quot;:0.05,&quot;unit&quot;:&quot;×&quot;,&quot;section&quot;:&quot;Photos&quot;}}">
+// Paste the /exec URL from your deployed Google Apps Script Web App here.
+const FORM_ENDPOINT_URL = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+// Combined photo size cap, in raw bytes, before base64 encoding. Kept well
+// under Gmail's ~25MB attachment limit since base64 inflates size by ~33%.
+const MAX_PHOTOS_BYTES = 10 * 1024 * 1024;
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve({ name: file.name, type: file.type, data: reader.result.split(',')[1] });
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function submitFormData(form, formType) {
+  const data = { formType };
+  const photoFiles = [];
+  new FormData(form).forEach((value, key) => {
+    if (value instanceof File) {
+      if (value.size > 0) photoFiles.push(value);
+    } else {
+      data[key] = value;
+    }
+  });
+
+  if (photoFiles.length) {
+    const totalBytes = photoFiles.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes <= MAX_PHOTOS_BYTES) {
+      data.photos = await Promise.all(photoFiles.map(readFileAsBase64));
+    } else {
+      data.photosSkippedCount = photoFiles.length;
+    }
+  }
+
+  if (typeof window !== 'undefined' && FORM_ENDPOINT_URL.indexOf('PASTE_') !== 0) {
+    fetch(FORM_ENDPOINT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    }).catch(() => {});
+  }
+}
+
 class Component extends DCLogic {
   state = { page: 'home', estimateSent: false, careerSent: false };
 
@@ -498,8 +544,8 @@ class Component extends DCLogic {
       goHome: () => this.go('home'), goAbout: () => this.go('about'),
       goGallery: () => this.go('gallery'), goContact: () => this.go('contact'),
       goCareers: () => this.go('careers'),
-      onEstimate: (e) => { e.preventDefault(); this.setState({ estimateSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
-      onCareer: (e) => { e.preventDefault(); this.setState({ careerSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      onEstimate: (e) => { e.preventDefault(); submitFormData(e.target, 'estimate'); this.setState({ estimateSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      onCareer: (e) => { e.preventDefault(); submitFormData(e.target, 'career'); this.setState({ careerSent: true }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); },
       resetEstimate: () => this.setState({ estimateSent: false }),
       resetCareer: () => this.setState({ careerSent: false })
     };
