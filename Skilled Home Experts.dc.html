@@ -476,7 +476,7 @@ class Component extends DCLogic {
     };
 
     const nav = [
-      ['home', 'Home'], ['about', 'About'], ['gallery', 'Gallery'], ['contact', 'Contact'], ['careers', 'Careers']
+      ['home', 'Home'], ['about', 'About'], ['contact', 'Contact'], ['careers', 'Careers']
     ].map(([key, label]) => ({ key, label, active: page === key, go: () => this.go(key) }));
 
     const services = [
