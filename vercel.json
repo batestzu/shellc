@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/Simple%20Home%20Experts.dc.html" }
+  ]
+}
