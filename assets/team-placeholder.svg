@@ -1,23 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1600" viewBox="0 0 900 1600">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#EBE4F5"/>
-      <stop offset="1" stop-color="#F5F1E8"/>
-    </linearGradient>
-  </defs>
-  <rect width="900" height="1600" fill="url(#bg)"/>
-  <g fill="#C9B9E4">
-    <!-- back two figures -->
-    <circle cx="300" cy="640" r="85"/>
-    <path d="M150 960c0-110 68-190 150-190s150 80 150 190z"/>
-    <circle cx="600" cy="640" r="85"/>
-    <path d="M450 960c0-110 68-190 150-190s150 80 150 190z"/>
+  <!-- Vertical S.H.E. acronym, styled after the S.H.E. Handy poster.
+       Temporary stand-in for the About page team photo. -->
+  <rect width="900" height="1600" fill="#F2ECE1"/>
+
+  <!-- thin inset frame -->
+  <rect x="44" y="44" width="812" height="1512" rx="10" fill="none" stroke="#5B6236" stroke-width="3" opacity="0.55"/>
+
+  <!-- house roofline -->
+  <g fill="none" stroke="#5B6236" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M300 250 L450 140 L600 250"/>
+    <path d="M545 210 V160 H575 V232"/>
   </g>
-  <g fill="#9C88C0">
-    <!-- front figure -->
-    <circle cx="450" cy="700" r="100"/>
-    <path d="M270 1060c0-130 80-225 180-225s180 95 180 225z"/>
+  <g fill="#B5604C">
+    <rect x="433" y="196" width="15" height="15"/><rect x="452" y="196" width="15" height="15"/>
+    <rect x="433" y="215" width="15" height="15"/><rect x="452" y="215" width="15" height="15"/>
   </g>
-  <text x="450" y="1180" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" fill="#5E4A85">Meet our team</text>
-  <text x="450" y="1250" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#6E6776">Photo coming soon</text>
+
+  <g text-anchor="middle">
+    <text x="450" y="540" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" fill="#2B2620">S</text>
+    <circle cx="450" cy="595" r="13" fill="#B5604C"/>
+    <text x="450" y="665" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="10" fill="#5B6236">SKILLED</text>
+    <text x="450" y="960" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" fill="#2B2620">H</text>
+    <circle cx="450" cy="1015" r="13" fill="#B5604C"/>
+    <text x="450" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="10" fill="#5B6236">HOME</text>
+    <text x="450" y="1380" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" fill="#2B2620">E</text>
+    <circle cx="450" cy="1435" r="13" fill="#B5604C"/>
+    <text x="450" y="1505" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="10" fill="#5B6236">EXPERTS</text>
+  </g>
 </svg>

@@ -20,7 +20,7 @@ There's no build step, database or CMS. The whole site is one HTML file.
 Skilled Home Experts.dc.html   <- THE WEBSITE. All pages, text, colors, photos, forms.
 assets/                        <- Photos used on the site.
   she-handy-banner.jpg         <- Home page image (the S.H.E. Handy poster)
-  team-placeholder.svg         <- About page "team photo coming soon" placeholder
+  team-placeholder.svg         <- About page S.H.E. acronym graphic (placeholder for the team photo)
 .image-slots.state.json        <- How each photo is cropped/zoomed (see section 4)
 apps-script/Code.gs            <- Copy of the Google Apps Script form-to-email code
 index.html, vercel.json        <- Make the site's home address open the main file. Don't touch.
@@ -85,12 +85,12 @@ Check your change at **phone width** too. In Chrome, press `F12` and then `Ctrl+
 
 | Spot on site | File | Shape shown | Recommended size |
 |---|---|---|---|
-| Home page image | `assets/she-handy-banner.jpg` | Matches the poster (1080 × 1712) | Same shape as the current poster |
+| Home page image | `assets/she-handy-banner.jpg` | Matches the poster (1080 × 1708) | Same shape as the current poster |
 | About page team photo | `assets/team-placeholder.svg` (placeholder) | Tall portrait (9:16) | 900 × 1600 px |
 
 The site crops images to fill the shape. An image with a different shape still works, but the edges get cut off. Put the important part (faces) near the center.
 
-**Home image shape:** the Home box is sized to the poster's shape. Search for `aspect-ratio:1080/1712` in the HTML file and change the numbers to the new image's width/height (e.g. `aspect-ratio:1/1` for a square photo) so nothing important gets cropped.
+**Home image shape:** the Home box is sized to the poster's shape. Search for `aspect-ratio:1080/1708` in the HTML file and change the numbers to the new image's width/height (e.g. `aspect-ratio:1/1` for a square photo) so nothing important gets cropped.
 
 **Adding the real team photo:** save it as `assets/team-photo.jpg`, then in the HTML change `src="assets/team-placeholder.svg"` to `src="assets/team-photo.jpg"`.
 
