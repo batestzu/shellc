@@ -11,6 +11,7 @@ This guide is for anyone who has to look after the Skilled Home Experts (S.H.E. 
 | **GitHub repo** | `https://github.com/batestzu/shellc`. All of the site's files live here. |
 | **Vercel** | The hosting service. Every push to the `main` branch on GitHub **automatically publishes** the site, usually within about a minute. |
 | **Google Apps Script** | A small script (`apps-script/Code.gs`) that turns the Estimate and Careers form submissions into emails. It runs on Google's servers, not on Vercel. |
+| **Vercel Web Analytics** | Visitor stats, shown in the Vercel project's **Analytics** tab. It's turned on by two `<script>` tags in the `<head>` of `Skilled Home Experts.dc.html` (they load `/_vercel/insights/script.js`). Don't remove them. If the Analytics tab is ever disabled in Vercel, that script returns a 404 and nothing is tracked. |
 
 There's no build step, database or CMS. The whole site is one HTML file.
 
